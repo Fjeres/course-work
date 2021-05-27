@@ -1,0 +1,34 @@
+{% extends 'base.html' %}
+
+{% block sidebar %}
+
+<p>Для проверки наличия и возможности заказать деталь, звоните на номер +7-777-77-77</p>
+
+{% endblock %}
+
+
+{% block content %}
+
+    {% for item in accessories %}
+        <div class="card mb-3">
+            <div class="card-header">
+                Модель: <a> {{ item.title }}</a>
+            </div>
+            <div class="card-body">
+                <div class="media">
+                    <div class="media-body">
+                        <p class="card-text">{{ item.content|truncatewords:30 }}</p>
+                    </div>
+                </div>
+
+            </div>
+        </div>
+
+
+    {% endfor %}
+
+{% endblock %}
+
+{% block title %}
+    Аксессуары
+{% endblock %}

@@ -1,0 +1,27 @@
+{% extends 'base.html' %}
+
+{% block sidebar %}
+
+
+{% endblock %}
+
+
+
+{% block title %}
+    Добавление отзыва
+{% endblock %}
+
+{% block content %}
+
+<h1>Добавление отзыва</h1>
+
+    <form action="{% url 'add_feedback'  %}" method='post' >
+        {% csrf_token %}
+        {{ form.as_p }}
+
+        <button type="submit" class="btn btn-primary btn-block">Отправить</button>
+     </form>
+
+{% endblock %}
+
+

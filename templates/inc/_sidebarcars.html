@@ -1,9 +1,9 @@
-
 {% load cars_tags %}
 
 <div class="list-group">
-         {% get_list_model as car_models %}
-        {% for item in car_models %}
-            <a href="{{item.get_absolute_url}}" class="list-group-item list-group-item-action">{{ item.title }}</a>
-        {% endfor %}
-    </div>
+    {% get_list_model as car_models %}
+    {% for item in car_models %}
+        <a href="{{ item.get_absolute_url }}" class="list-group-item list-group-item-action">{{ item.title }}</a>
+    {% endfor %}
+    <a href="/cars/models/3/" class="list-group-item list-group-item-action"> Автомобили > 1 млн рублей</a>
+</div>

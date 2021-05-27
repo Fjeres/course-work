@@ -1,7 +1,7 @@
 from django.shortcuts import render
 
 from django.http import HttpResponse
-from .models import News, Category
+from .models import News, Category, GeneralInformation
 
 
 def index(request):
@@ -31,3 +31,10 @@ def view_news(request, news_id):
                   })
 
 
+def get_general_information(request):
+    information = GeneralInformation.objects.all()
+    return render(request, 'news/information.html',
+                  {
+                      "information": information,
+                      'title': "Главная",
+                  })

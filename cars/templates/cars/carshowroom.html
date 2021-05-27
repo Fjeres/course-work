@@ -1,0 +1,62 @@
+{% extends 'base.html' %}
+
+{% block sidebar %}
+     <h1  class="nav-item"><a  class="nav-link" href="{% url 'add_feedback' %}">Оставить отзыв</a></h1>
+    {% for item in feedback %}
+        <div class="card">
+            <div class="card-header">
+                Имя клиента: <a> {{ item.name }}</a>
+            </div>
+            <div class="card-body">
+                <p class="card-text">Имя компании: {{ item.сar_showroom }}</p>
+                <p class="card-text">Отзыв: {{ item.content }}</p>
+
+            </div>
+        </div>
+    {% endfor %}
+{% endblock %}
+
+
+{% block content %}
+       <p class="h1">Информация об автосалонах:</p>
+    {% for item in car_showroom %}
+        <div class="card mb-3">
+            <div class="card-header">
+                Название автосалона: <a> {{ item.name }}</a>
+            </div>
+            <div class="card-body">
+                <div class="media">
+                    <div class="media-body">
+                        <p class="card-text">Адрес: {{ item.address }}</p>
+                        <p class="card-text">Номер телефона: {{ item.telephone }}</p>
+                    </div>
+                </div>
+
+            </div>
+        </div>
+
+
+    {% endfor %}
+    <p class=" h1">Карта расположения автосалонов</p>
+    <iframe src="https://www.google.com/maps/embed?pb=!1m16!1m12!1m3!1d17639.53880659009!2d84.96837569247202!3d56.45152506947884!2m3!1f0!2f0!3f0!3m2!1i1024!2i768!4f13.1!2m1!1z0LDQstGC0L7RgdCw0LvQvtC9INC70LDQtNCw!5e0!3m2!1sru!2sru!4v1622090260935!5m2!1sru!2sru"
+            width="600" height="450" style="border:0;" allowfullscreen="" loading="lazy"></iframe>
+
+    <p class=" h1">Список Вакансий</p>
+    {% for item in vacancies %}
+        <div class="card">
+            <div class="card-header">
+                Вакансия: <a> {{ item.name }}</a>
+            </div>
+            <div class="card-body">
+                <p class="card-text">Автосалон: {{ item.сar_showroom }}</p>
+                <p class="card-text">Описание работы: {{ item.content }}</p>
+                <p class="card-text">Телефон для связи: {{ item.telephone }}</p>
+
+            </div>
+        </div>
+    {% endfor %}
+{% endblock %}
+
+{% block title %}
+    Автосалоны
+{% endblock %}

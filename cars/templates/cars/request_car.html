@@ -1,0 +1,27 @@
+{% extends 'base.html' %}
+
+{% block sidebar %}
+
+
+{% endblock %}
+
+
+
+{% block title %}
+    Заявка
+{% endblock %}
+
+{% block content %}
+
+<h1>Заявка</h1>
+
+    <form action="{% url 'request_car'  %}" method='post' >
+        {% csrf_token %}
+        {{ form.as_p }}
+
+        <button type="submit" class="btn btn-primary btn-block">Отправить</button>
+     </form>
+
+{% endblock %}
+
+

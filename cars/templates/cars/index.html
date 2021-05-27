@@ -8,7 +8,6 @@
 
 
 {% block content %}
-
     {% for item in cars %}
         <div class="card mb-3">
             <div class="card-header">
@@ -30,6 +29,7 @@
                 </div>
 
             </div>
+         <div class="card-footer text-muted"> Цена: {{ item.price }} </div>
         </div>
 
 
