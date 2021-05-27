@@ -1,9 +1,17 @@
 from django.shortcuts import render, redirect
 
-from django.http import HttpResponse
 
-from .models import Cars, CarModel, Accessories, AddServices, CarShowroom, Feedback, Vacancies
+from basdate.settings import BASE_DIR
+import os
+
+from .models import Cars, CarModel, Accessories, AddServices, CarShowroom, Feedback, Vacancies, RequestCar
 from .forms import FeedbackForm, RequestCarForm
+
+# PDF
+from django.http import HttpResponse
+from django.template.loader import get_template
+from xhtml2pdf import pisa
+
 
 
 def index(request):
@@ -81,7 +89,28 @@ def add_request_car(request):
         form = RequestCarForm(request.POST)
         if form.is_valid():
             form.save()
-            return redirect('cars')
+            return redirect('pdf')
     else:
         form = RequestCarForm()
     return render(request, 'cars/request_car.html', {"form": form})
+
+
+def render_pdf_view(request):
+    request_car = RequestCar.objects.last()
+    # template_path = 'cars/pdf1.html'
+    template_path = 'cars/pdf1.html'
+    context = {'request_car': request_car}
+    # Create a Django response object, and specify content_type as pdf
+    response = HttpResponse(content_type='application/pdf')
+    # если скачивать надо раскоменить нижнее
+    # response['Content-Disposition'] = 'attachment; filename="report.pdf"'
+    response['Content-Disposition'] = 'filename="report.pdf"'
+    # find the template and render it.
+    template = get_template(template_path)
+    html = template.render(context)
+    # create a pdf
+    pisa_status = pisa.CreatePDF(html.encode('UTF-8'),  encoding='UTF-8', dest=response)
+    # if error then show some funy view
+    if pisa_status.err:
+        return HttpResponse('We had some errors <pre>' + html + '</pre>')
+    return response

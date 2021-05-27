@@ -1,0 +1,79 @@
+{% load static %}
+
+<html lang="en">
+<head>
+    <style>
+
+        @page {
+            size: a4 portrait;
+
+            @frame header_frame { /* Static Frame */
+            -pdf-frame-content: header_content;
+
+            left: 50pt;
+            width: 512pt;
+            top: 50pt;
+            height: 40pt;
+
+
+        }
+        @frame content_frame {
+            /* Content Frame */
+        left: 50pt;
+        width: 512pt;
+        top: 90pt;
+        height: 632pt;
+
+        }
+        @frame footer_frame {
+            /* Another static Frame */
+        -pdf-frame-content:footer_content;
+        left: 50pt;
+        width: 512pt;
+        top: 772pt;
+        height: 20pt;
+        }
+        }
+
+        @font-face {
+            font-family: f;
+            src: 'C:\Users\Maxim\OneDrive\Desktop\basdate\basdate\static\fonts\f.ttf';
+        }
+
+        html {
+            font-family: f;
+        }
+
+
+    </style>
+    <meta charset="UTF-8">
+</head>
+
+<body>
+<div id="header_content">
+  <h1 style="text-align:center"> Код вашего заявления:
+    {{ request_car.id }}
+      </h1>
+
+</div>
+
+<div id="header_frame">
+    <h1 style="text-align:left"> Фамилия: {{ request_car.surname }} </h1>
+    <h1 style="text-align:left"> Имя: {{ request_car.name }} </h1>
+    <h1 style="text-align:left"> Отчество: {{ request_car.patronymic }} </h1>
+    <h1 style="text-align:left"> Телефон: {{ request_car.telephone }} </h1>
+    <h1 style="text-align:left"> Автосалон: {{ request_car.сar_showroom }} </h1>
+    <h1 style="text-align:left"> Автомобиль: {{ request_car.car }} </h1>
+    <h1 style="text-align:left"> Дополнительные услуги: {{ request_car.services }} </h1>
+
+</div>
+<!-- Content for Static Frame 'header_frame' -->
+
+
+<!-- Content for Static Frame 'footer_frame' -->
+<div id="footer_content">
+    <h1 style="text-align:center">Атосалон Lada</h1>
+</div>
+
+</body>
+</html>

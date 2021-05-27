@@ -11,4 +11,6 @@ urlpatterns = [
     path('showrooms/', get_cars_showrooms, name='showrooms'),
     path('add-feedback/', add_feedback, name='add_feedback'),
     path('add-request/', add_request_car, name='request_car'),
+    path('pdf/', render_pdf_view, name='pdf'),
+
 ]
