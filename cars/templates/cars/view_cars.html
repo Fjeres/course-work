@@ -7,7 +7,7 @@
 {% endblock %}
 
 {% block title %}
-    {{ cars_item.title }}
+    {{ cars_item.carModel.title }}
 {% endblock %}
 
 {% block content %}
@@ -19,7 +19,7 @@
         </div>
         <div class="card-body">
             <div class="media">
-                {% if item.photo %}
+                {% if cars_item.photo %}
                     <img src="{{ cars_item.photo.url }}" alt="" width="300" align="left" hspace="10">
                 {% else %}
                     <img src="https://picsum.photos/id/1060/350/235/?blur=2" alt="" width="300" align="left"
@@ -27,7 +27,7 @@
                 {% endif %}
                 <div class="media-body">
                     <h5 class="card-title">{{ cars_item.title }}</h5>
-                    <p class="card-text">{{ cars_item.content}}</p>
+                    <p class="card-text">{{ cars_item.content|linebreaksbr}}|</p>
 
                 </div>
             </div>

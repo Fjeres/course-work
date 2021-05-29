@@ -39,6 +39,7 @@ def get_car_model(request, car_model_id):
 
 def view_cars(request, cars_id):
     cars_item = Cars.objects.get(pk=cars_id)
+    print(cars_item.photo.url)
     return render(request, 'cars/view_cars.html',
                   {
                       "cars_item": cars_item
